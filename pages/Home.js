@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import HomeHeader from '../components/HomeHeader';
 import HomeContent from '../components/HomeContent';
+import HomeForm from '../components/HomeForm';
 
 const HomePage = styled.div`
   border: 5px solid lightgrey;
@@ -25,6 +26,7 @@ const Home = () => {
         <HomeHeader />
         <Content>
           <HomeContent />
+          <HomeForm />
         </Content>
       </HomePage>
     </>
