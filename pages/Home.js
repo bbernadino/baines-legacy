@@ -6,6 +6,7 @@ import HomeForm from '../components/HomeForm';
 
 const HomePage = styled.div`
   border: 5px solid lightgrey;
+  border-radius: 5px;
   height: 95%;
   width: 95%;
   display: flex;
