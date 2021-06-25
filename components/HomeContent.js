@@ -33,6 +33,19 @@ const HomeContent = () => {
           <h1>Bring Light to Baine's Legacy</h1>
         </Title>
         <InfoBox>
+          <p>
+            Bring Light to Baine's Legacy is an annual event that is held in honor of Baine Brady Bobka
+            who passed away in 2017 at the age of 7. He passed away from an unknown (at the time)
+            genetic disorder called OTC Ornithine Transcarbamylase Deficiency. Since Baine's death,
+            Baine's family has been able to track the disorder back to a specific ancestor, and have
+            contacted all of their relatives to let them know about this disease. Because of Baine, many
+            lives have been saved and doctors have learned so much more about this disorder. We created
+            Bring Light to Baine's Legacy to honor Baine, as well as raise awareness about OTC
+            Deficiency. This year we will also be honoring Rock Arthur Johnson who was less than one
+            year old when he passed away in February from OTC Deficiency.
+          </p>
+        </InfoBox>
+        <InfoBox>
           <h4>Date: July 10</h4>
           <h4>Location: Lewiston UT Fairgrounds (106 E Center St. Lewiston UT)</h4>
           <h4>Time:</h4>

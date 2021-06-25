@@ -1,6 +1,7 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import img from '../assets/img/IMG-7080.jpg';
+import CheckoutButton from './CheckoutButtons';
 
 const FormBox = styled.div`
   height: 100%;
@@ -25,9 +26,111 @@ const Form = styled.form`
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  ul {
+    list-style: none;
+  }
+
+  .ticketAmount {
+    text-align: center;
+  }
+
+  .btns {
+    width: 80%;
+  }
 `;
 
-const FormInput = styled.div`
+const HomeForm = () => {
+
+  // hold ticket amount
+const [order, setOrder] = useState(null);
+const [totalPrice, setTotalPrice] = useState(0);
+const [adultShirtSize, setAdultShirtSize] = useState(null);
+const [childShirtSize, setChildShirtSize] = useState(null);
+
+// create function to add items to order
+const addToOrder = (ticketInfo) => {
+  if (order === null) {
+    setOrder([ticketInfo]);
+  } else if (order !== null) {
+    setOrder([...order, ticketInfo]);
+  }
+  setTotalPrice(totalPrice + ticketInfo.price);
+};
+
+useEffect(() => console.log(order, totalPrice), [order]);
+  return (
+    <>
+      <FormBox>
+        <FormImg />
+        <Form>
+          <h2>Get Tickets</h2>
+          <ul>
+            <li>-Standard Child (0-12) - $5 </li>
+            <button
+              type="button"
+              className="ticketAmount standardChildTicket"
+              onClick={() => {
+                addToOrder({ ticket: "Standard Child", price: 5 });
+                console.log(order);
+              }}>
+              Add To Order
+            </button>
+            <li>-Standard Adult - $15 </li>
+            <button
+              type="button"
+              className="ticketAmount standardAdultTicket"
+              onClick={() => addToOrder({ ticket: "Standard Adult", price: 15 })}>
+              Add To Order
+            </button>
+            <li>-Premium Child - $15 </li>
+            <select onChange={(e) => setChildShirtSize(e.target.value)}>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+              <option>X-Large</option>
+            </select>
+            <button
+              type="button"
+              className="ticketAmount premiumChild"
+              onClick={() =>
+                addToOrder({ ticket: "Premium Child", price: 15, shirtSize: `${childShirtSize}` })
+              }>
+              Add to Order
+            </button>
+
+            <li>-Premium Adult- $25 </li>
+            <select onChange={(e) => setAdultShirtSize(e.target.value)}>
+              <option>Small</option>
+              <option>Medium</option>
+              <option>Large</option>
+              <option>X-Large</option>
+            </select>
+
+            <button
+              type="button"
+              className="ticketAmount premiumAdult"
+              onClick={() =>
+                addToOrder({ ticket: "Premium Adult", price: 25, shirtSize: `${adultShirtSize}` })
+              }>
+              Add To Order
+            </button>
+        </ul>
+
+        <CheckoutButton totalPrice={totalPrice} />
+          {/* ------- */}
+        </Form>
+      </FormBox>
+    </>
+  )
+}
+
+export default HomeForm
+
+
+{/* 
+  
+  const FormInput = styled.div`
   display: flex;
   flex-direction: column;
   height: 100%;
@@ -51,14 +154,10 @@ const SelectBox = styled.div`
     margin-right: 10px;
   }
 `;
-
-const HomeForm = () => {
-  return (
-    <>
-      <FormBox>
-        <FormImg />
-        <Form>
-          <FormInput>
+  
+  
+  
+  <FormInput>
             <label htmlFor="firstName">First Name:</label>
             <input type="text" name="firstName" id="firstName" />
           </FormInput>
@@ -93,11 +192,4 @@ const HomeForm = () => {
                 <option value="black">Black</option>
               </select>
             </div>
-           </SelectBox>          
-        </Form>
-      </FormBox>
-    </>
-  )
-}
-
-export default HomeForm
+           </SelectBox>   */}
