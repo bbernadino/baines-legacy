@@ -4,6 +4,7 @@ import styled from 'styled-components';
 const HomeContentBox = styled.div`
   height: 100%;
   width: 100%;
+  max-width: 480px;
   padding: 5px;
   display: flex;
   flex-direction: column;
@@ -11,6 +12,11 @@ const HomeContentBox = styled.div`
   
   li {
     list-style: none;
+  }
+
+  @media screen and (max-width: 1000px) {
+    margin-bottom: 25px;
+    max-width: 700px;
   }
 `;
 
