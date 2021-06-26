@@ -42,11 +42,17 @@ const FormImg = styled.div`
 
 const QrBox = styled.div`
   flex: 1;
-  padding: 10px 10px;
+  width: 100%;
+  padding: 25px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: space-evenly;
+
+  input {
+    width: 95%;
+    margin: 10px 5px;
+  }
 `;
 
 const Form = styled.form`
@@ -58,7 +64,23 @@ const Form = styled.form`
   justify-content: space-evenly;
 
   ul {
+    padding: 5px;
     list-style: none;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+
+    div {
+      display: flex;
+      width: 100%;
+      justify-content: space-between;
+
+      select {
+        align-self: flex-start;
+      }
+    }
   }
 
   div {
@@ -148,6 +170,7 @@ useEffect(() => console.log(order, totalPrice), [order]);
             <QRCode 
               id='abc'
               value={qrInput}
+              size={200}
             />
             <input 
               onChange={onChangeHandler}
@@ -159,7 +182,7 @@ useEffect(() => console.log(order, totalPrice), [order]);
           </QrBox>
           <ul>
             <div>
-              <li>-Standard Child (0-12) - $5 </li>
+              <li>Standard Child (0-12) - $5 </li>
               <button
                 type="button"
                 className="ticketAmount standardChildTicket"
@@ -171,7 +194,7 @@ useEffect(() => console.log(order, totalPrice), [order]);
               </button>
             </div>
             <div>
-              <li>-Standard Adult - $15 </li>
+              <li>Standard Adult - $15 </li>
               <button
                 type="button"
                 className="ticketAmount standardAdultTicket"
@@ -180,7 +203,7 @@ useEffect(() => console.log(order, totalPrice), [order]);
               </button>
             </div>
             <div>
-              <li>-Premium Child - $15 </li>
+              <li>Premium Child - $15 </li>
               <select onChange={(e) => setChildShirtSize(e.target.value)}>
                 <option>Small</option>
                 <option>Medium</option>
@@ -197,7 +220,7 @@ useEffect(() => console.log(order, totalPrice), [order]);
               </button>
             </div>
             <div>
-              <li>-Premium Adult- $25 </li>
+              <li>Premium Adult - $25 </li>
               <select onChange={(e) => setAdultShirtSize(e.target.value)}>
                 <option>Small</option>
                 <option>Medium</option>
@@ -212,9 +235,9 @@ useEffect(() => console.log(order, totalPrice), [order]);
                 }>
                 Add To Order
               </button>
-              <div>
-                <button type="submit" value="submit" className="submit">Submit</button>
-              </div>
+            </div>
+            <div>
+              <button type="submit" value="submit" className="submit">Submit</button>
             </div>
         </ul>
 
