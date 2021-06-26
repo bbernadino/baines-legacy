@@ -41,7 +41,7 @@ const FormImg = styled.div`
 
 const Form = styled.form`
   flex: 4;
-  padding: 25px;
+  padding: 25px 10px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -64,7 +64,7 @@ const Form = styled.form`
   }
 
   .btns {
-    width: 80%;
+    width: 100%;
   }
 
   @media screen and (max-width: 1000px) {
@@ -89,6 +89,7 @@ const [childShirtSize, setChildShirtSize] = useState(null);
 
 // create function to add items to order
 const addToOrder = (ticketInfo) => {
+
   if (order === null) {
     setOrder([ticketInfo]);
   } else if (order !== null) {
