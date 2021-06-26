@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import QRCode from 'qrcode.react';
 import styled from 'styled-components';
 import img from '../assets/img/IMG-7080_455x223.jpg';
 import imgMd from '../assets/img/IMG-7080_1_700x368.jpg';
@@ -39,8 +40,17 @@ const FormImg = styled.div`
   }
 `;
 
+const QrBox = styled.div`
+  flex: 1;
+  padding: 10px 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+`;
+
 const Form = styled.form`
-  flex: 4;
+  flex: 2;
   padding: 25px 10px;
   display: flex;
   flex-direction: column;
@@ -59,12 +69,26 @@ const Form = styled.form`
         }
       }
 
+  input {
+    height: 30px;
+  }
+
   .ticketAmount {
     text-align: center;
   }
 
   .btns {
     width: 100%;
+  }
+
+  .submit {
+    width: 100%;
+    height: 35px;
+    background: #FFC439;
+    color: #003087;
+    border: none;
+    border-radius: 5px;
+    margin-top: 10px;
   }
 
   @media screen and (max-width: 1000px) {
@@ -80,8 +104,8 @@ const Form = styled.form`
 `;
 
 const HomeForm = () => {
-
-  // hold ticket amount
+// hold ticket amount
+const [qrInput, setQrInput] = useState('');
 const [order, setOrder] = useState(null);
 const [totalPrice, setTotalPrice] = useState(0);
 const [adultShirtSize, setAdultShirtSize] = useState(null);
@@ -98,13 +122,41 @@ const addToOrder = (ticketInfo) => {
   setTotalPrice(totalPrice + ticketInfo.price);
 };
 
+// submit ticket qr value
+
+const onChangeHandler = event => {
+  setQrInput(event.target.value);
+};
+
+const onSubmitHandler = (event) => {
+  event.preventDefault();
+
+  alert(`You, (${qrInput}) have selected ${JSON.stringify(order)}, for $${totalPrice}. Do you wish to proceed?`);
+};
+
+
 useEffect(() => console.log(order, totalPrice), [order]);
   return (
     <>
       <FormBox>
-        <FormImg />
-        <Form>
+        {/* <FormImg /> */}
+        <Form
+          onSubmit={onSubmitHandler}
+        >
           <h2>Get Tickets</h2>
+          <QrBox>
+            <QRCode 
+              id='abc'
+              value={qrInput}
+            />
+            <input 
+              onChange={onChangeHandler}
+              value={qrInput}
+              type="text"
+              name="name"
+              placeholder="First and Last Name"
+            />
+          </QrBox>
           <ul>
             <div>
               <li>-Standard Child (0-12) - $5 </li>
@@ -160,6 +212,9 @@ useEffect(() => console.log(order, totalPrice), [order]);
                 }>
                 Add To Order
               </button>
+              <div>
+                <button type="submit" value="submit" className="submit">Submit</button>
+              </div>
             </div>
         </ul>
 
